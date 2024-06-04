@@ -3,28 +3,28 @@ def adicionar_livro(biblioteca, titulo, autor):
         biblioteca[titulo] = {"autor": autor, "status": "disponível"}
         print('O livro "' + titulo + '" foi adicionado.')
     else:
-        print('O livro "' + titulo + '" já existe na biblioteca.')
+        print('O livro "' + titulo + '" já existe.')
 
 def emprestar_livro(biblioteca, titulo):
     if titulo in biblioteca:
         biblioteca[titulo]["status"] = "emprestado"
         print('O livro "' + titulo + '" foi emprestado.')
     else:
-        print('O livro "' + titulo + '" não encontrado na biblioteca.')
+        print('O livro "' + titulo + '" não foi encontrado.')
 
 def devolver_livro(biblioteca, titulo):
     if titulo in biblioteca:
         biblioteca[titulo]["status"] = "disponível"
         print('O livro "' + titulo + '" foi devolvido.')
     else:
-        print('O livro "' + titulo + '" não encontrado na biblioteca.')
+        print('O livro "' + titulo + '" não foi encontrado.')
 
 def listar_livros(biblioteca):
     if biblioteca:
         for titulo, dados in biblioteca.items():
             print('Título: ' + titulo + ', Autor: ' + dados["autor"] + ', Status: ' + dados["status"])
     else:
-        print("A biblioteca está vazia.")
+        print("Não há livros na biblioteca")
 
 def main():
     biblioteca = {}
@@ -43,10 +43,10 @@ def main():
             autor = input("Digite o autor do livro: ")
             adicionar_livro(biblioteca, titulo, autor)
         elif opcao == "2":
-            titulo = input("Digite o título do livro a ser emprestado: ")
+            titulo = input("Digite o título do livro que deseja emprestar: ")
             emprestar_livro(biblioteca, titulo)
         elif opcao == "3":
-            titulo = input("Digite o título do livro a ser devolvido: ")
+            titulo = input("Digite o título do livro que será devolvido: ")
             devolver_livro(biblioteca, titulo)
         elif opcao == "4":
             listar_livros(biblioteca)
@@ -54,7 +54,7 @@ def main():
             print("Saindo do sistema...")
             break
         else:
-            print("Opção inválida. Tente novamente.")
-        print()  # Adiciona uma linha em branco entre as iterações do loop
+            print("Opção inválida, tente novamente.")
+        print()
 
 main()
