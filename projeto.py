@@ -1,35 +1,35 @@
 def adicionar_livro(biblioteca, titulo, autor):
     if titulo not in biblioteca:
         biblioteca[titulo] = {"autor": autor, "status": "disponível"}
-        print(f'O livro "{titulo}" foi adicionado.')
+        print('O livro "' + titulo + '" foi adicionado.')
     else:
-        print(f'O livro "{titulo}" já existe na biblioteca.')
+        print('O livro "' + titulo + '" já existe na biblioteca.')
 
 def emprestar_livro(biblioteca, titulo):
-   if titulo in biblioteca:
-       del biblioteca[titulo]
-       print (f'O livro "{titulo}" foi emprestado.')
-   else:
-       print(f'O livro "{titulo}" não encontrado na biblioteca.')
+    if titulo in biblioteca:
+        biblioteca[titulo]["status"] = "emprestado"
+        print('O livro "' + titulo + '" foi emprestado.')
+    else:
+        print('O livro "' + titulo + '" não encontrado na biblioteca.')
 
 def devolver_livro(biblioteca, titulo):
     if titulo in biblioteca:
-        del biblioteca[titulo]
-        print (f'O livro "{titulo}" foi devolvido.')
+        biblioteca[titulo]["status"] = "disponível"
+        print('O livro "' + titulo + '" foi devolvido.')
     else:
-        print(f'O livro "{titulo}" não encontrado na biblioteca.')
+        print('O livro "' + titulo + '" não encontrado na biblioteca.')
 
 def listar_livros(biblioteca):
     if biblioteca:
         for titulo, dados in biblioteca.items():
-             print(f'Título: {titulo}, Autor: {dados["autor"]}, Status: {dados["status"]}')
+            print('Título: ' + titulo + ', Autor: ' + dados["autor"] + ', Status: ' + dados["status"])
     else:
-      print("A biblioteca está vazia.")
+        print("A biblioteca está vazia.")
 
 def main():
     biblioteca = {}
     while True:
-        print("\nSistema de Gerenciamento de Biblioteca")
+        print("Sistema de Gerenciamento de Biblioteca")
         print("1. Adicionar Livro")
         print("2. Emprestar Livro")
         print("3. Devolver Livro")
@@ -43,7 +43,7 @@ def main():
             autor = input("Digite o autor do livro: ")
             adicionar_livro(biblioteca, titulo, autor)
         elif opcao == "2":
-            titulo = input("Digite o título do livro a ser empretado: ")
+            titulo = input("Digite o título do livro a ser emprestado: ")
             emprestar_livro(biblioteca, titulo)
         elif opcao == "3":
             titulo = input("Digite o título do livro a ser devolvido: ")
@@ -55,6 +55,6 @@ def main():
             break
         else:
             print("Opção inválida. Tente novamente.")
+        print()  # Adiciona uma linha em branco entre as iterações do loop
 
-if __name__ == "__main__":
-    main()
+main()
